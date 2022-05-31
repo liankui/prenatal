@@ -2,6 +2,7 @@ FROM golang
 
 RUN mkdir -p /go/src/github.com/liankui/prenatal-server
 
+
 ADD . /go/src/github.com/liankui/prenatal-server
 
 RUN go get  -t -v ./...
