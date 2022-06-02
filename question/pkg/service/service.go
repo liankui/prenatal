@@ -2,6 +2,7 @@ package service
 
 import (
 	"context"
+	"github.com/liankui/prenatal-server/question/pkg/db"
 	"gorm.io/gorm"
 )
 
@@ -22,7 +23,9 @@ func (b *basicQuestionService) Foo(ctx context.Context, s string) (rs string, er
 
 // NewBasicQuestionService returns a naive, stateless implementation of QuestionService.
 func NewBasicQuestionService() QuestionService {
-	return &basicQuestionService{}
+	return &basicQuestionService{
+		db: db.Db,
+	}
 }
 
 // New returns a QuestionService with all of the expected middleware wired in.
