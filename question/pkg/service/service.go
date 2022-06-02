@@ -1,6 +1,9 @@
 package service
 
-import "context"
+import (
+	"context"
+	"gorm.io/gorm"
+)
 
 // QuestionService describes the service.
 type QuestionService interface {
@@ -8,7 +11,9 @@ type QuestionService interface {
 	Foo(ctx context.Context, s string) (rs string, err error)
 }
 
-type basicQuestionService struct{}
+type basicQuestionService struct {
+	db *gorm.DB
+}
 
 func (b *basicQuestionService) Foo(ctx context.Context, s string) (rs string, err error) {
 	// TODO implement the business logic of Foo
