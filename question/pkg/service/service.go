@@ -8,7 +8,6 @@ import (
 
 // QuestionService describes the service.
 type QuestionService interface {
-	// Add your methods here
 	Foo(ctx context.Context, s string) (rs string, err error)
 }
 
@@ -18,6 +17,7 @@ type basicQuestionService struct {
 
 func (b *basicQuestionService) Foo(ctx context.Context, s string) (rs string, err error) {
 	// TODO implement the business logic of Foo
+	rs = s
 	return rs, err
 }
 
