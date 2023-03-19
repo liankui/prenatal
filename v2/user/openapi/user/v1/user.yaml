@@ -1,0 +1,144 @@
+components:
+  schemas:
+    mojo.core.Timestamp:
+      description: ""
+      format: Timestamp
+      title: mojo.core.Timestamp
+      type: string
+    user.v1.Userinfo:
+      description: userinfo object
+      properties:
+        avatarUrl:
+          description: 用户头像图片的URL
+          title: mojo.core.String
+          type: string
+        birthday:
+          description: 生日
+          title: mojo.core.String
+          type: string
+        city:
+          description: 用户所在城市
+          title: mojo.core.String
+          type: string
+        company:
+          description: 公司名称
+          title: mojo.core.String
+          type: string
+        country:
+          description: 用户所在国家
+          title: mojo.core.String
+          type: string
+        createTime:
+          $ref: '#/components/schemas/mojo.core.Timestamp'
+        deleteTime:
+          $ref: '#/components/schemas/mojo.core.Timestamp'
+        desc:
+          description: 声明获取用户个人信息后的用途
+          title: mojo.core.String
+          type: string
+        education:
+          description: 学历 1-大专及以下 2-本科 3-硕士 4-博士及以上
+          title: mojo.core.String
+          type: string
+        email:
+          title: mojo.core.String
+          type: string
+        eventId:
+          description: 事件Id
+          format: Int64
+          title: mojo.core.Int64
+          type: integer
+        gender:
+          description: 用户性别 0-未知 1-男性 2-女性
+          format: Int64
+          title: mojo.core.Int64
+          type: integer
+        id:
+          description: the user id
+          title: mojo.core.String
+          type: string
+        industry:
+          description: 所在行业
+          title: mojo.core.String
+          type: string
+        inviterId:
+          description: 邀请者Id
+          format: Int64
+          title: mojo.core.Int64
+          type: integer
+        job:
+          description: 职业
+          title: mojo.core.String
+          type: string
+        language:
+          description: '显示用户信息的语言(default: zh_CN)'
+          title: mojo.core.String
+          type: string
+        major:
+          description: 专业
+          title: mojo.core.String
+          type: string
+        name:
+          description: the user name
+          title: mojo.core.String
+          type: string
+        nickname:
+          description: 用户昵称
+          title: mojo.core.String
+          type: string
+        openid:
+          description: 用户在当前小程序的唯一标识
+          title: mojo.core.String
+          type: string
+        password:
+          title: mojo.core.String
+          type: string
+        phoneNumber:
+          description: 电话号码
+          title: mojo.core.String
+          type: string
+        province:
+          description: 用户所在省份
+          title: mojo.core.String
+          type: string
+        role:
+          description: 职业角色
+          title: mojo.core.String
+          type: string
+        source:
+          description: 用户来源
+          title: mojo.core.String
+          type: string
+        unionid:
+          description: 微信开放平台帐号下的唯一标识
+          title: mojo.core.String
+          type: string
+        updateTime:
+          $ref: '#/components/schemas/mojo.core.Timestamp'
+      title: user.v1.Userinfo
+      type: object
+info:
+  description: get userinfo
+  title: user service
+  version: 0.1.0
+openapi: 3.0.3
+paths:
+  /user/v1/users/{id}:
+    get:
+      description: ""
+      operationId: get_userinfo
+      parameters:
+      - description: get user info by id
+        in: query
+        name: name
+        schema:
+          title: mojo.core.String
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/user.v1.Userinfo'
+          description: OK
+      summary: get user info

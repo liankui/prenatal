@@ -1,0 +1,17 @@
+{
+    "title": "hello_world.v1.Echo",
+    "description": "echo object",
+    "type": "object",
+    "properties": {
+        "message": {
+            "title": "mojo.core.String",
+            "description": "the completed echo message",
+            "type": "string"
+        },
+        "name": {
+            "title": "mojo.core.String",
+            "description": "the echo name",
+            "type": "string"
+        }
+    }
+}
