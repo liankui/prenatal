@@ -1,4 +1,4 @@
-module github.com/liankui/prenatal-server
+module github.com/liankui/prenatal-server/v1
 
 go 1.18
 

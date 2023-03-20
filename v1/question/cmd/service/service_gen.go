@@ -8,8 +8,9 @@ import (
 	http "github.com/go-kit/kit/transport/http"
 	group "github.com/oklog/oklog/pkg/group"
 	opentracinggo "github.com/opentracing/opentracing-go"
-	endpoint "liankui/prenatal-server/v1/question/pkg/endpoint"
-	http1 "liankui/prenatal-server/v1/question/pkg/http"
+
+	endpoint "github.com/liankui/prenatal-server/v1/question/pkg/endpoint"
+	http1 "github.com/liankui/prenatal-server/v1/question/pkg/http"
 )
 
 func createService(endpoints endpoint.Endpoints) (g *group.Group) {

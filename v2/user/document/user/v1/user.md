@@ -30,7 +30,7 @@ get userinfo
 | 500 | 服务器内部错误 |
 
 
-## get user info
+## get userinfo
 
 ### 请求路径
 ```http
@@ -43,7 +43,7 @@ GET /user/v1/users/{id}
 #### Query 参数
 | 参数名 | 参数类型 | 格式类型 | 是否必须 | 默认值 | 说明 |
 |---|---|---|---|---|---|
-| `name` | `string` |  | 否 |  | get user info by id |
+| `name` | `string` |  | 否 |  | get userinfo by id |
 
 
 ### 返回值

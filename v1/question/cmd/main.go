@@ -1,8 +1,8 @@
 package main
 
 import (
-	service "liankui/prenatal-server/v1/question/cmd/service"
-	"liankui/prenatal-server/v1/question/pkg/db"
+	service "github.com/liankui/prenatal-server/v1/question/cmd/service"
+	"github.com/liankui/prenatal-server/v1/question/pkg/db"
 )
 
 func main() {

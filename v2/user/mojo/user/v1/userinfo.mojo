@@ -1,4 +1,3 @@
-
 /// userinfo object
 type Userinfo {
     id: String @1 //< the user id

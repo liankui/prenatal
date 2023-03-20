@@ -19,11 +19,12 @@ import (
 	zipkingo "github.com/openzipkin/zipkin-go"
 	http "github.com/openzipkin/zipkin-go/reporter/http"
 	promhttp "github.com/prometheus/client_golang/prometheus/promhttp"
-	endpoint "liankui/prenatal-server/v1/question/pkg/endpoint"
-	http1 "liankui/prenatal-server/v1/question/pkg/http"
-	service "liankui/prenatal-server/v1/question/pkg/service"
 	appdash "sourcegraph.com/sourcegraph/appdash"
 	opentracing "sourcegraph.com/sourcegraph/appdash/opentracing"
+
+	endpoint "github.com/liankui/prenatal-server/v1/question/pkg/endpoint"
+	http1 "github.com/liankui/prenatal-server/v1/question/pkg/http"
+	service "github.com/liankui/prenatal-server/v1/question/pkg/service"
 )
 
 var tracer opentracinggo.Tracer

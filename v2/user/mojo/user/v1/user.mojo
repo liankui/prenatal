@@ -2,8 +2,8 @@
 ///
 /// get userinfo
 interface User {
-    /// get user info
+    /// get userinfo
     @http.get("/user/v1/users/{id}")
-    get_userinfo(name: String @1) //< get user info by id
+    get_userinfo(name: String @1) //< get userinfo by id
            -> Userinfo
 }

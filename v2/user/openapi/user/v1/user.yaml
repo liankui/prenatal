@@ -128,7 +128,7 @@ paths:
       description: ""
       operationId: get_userinfo
       parameters:
-      - description: get user info by id
+      - description: get userinfo by id
         in: query
         name: name
         schema:
@@ -141,4 +141,4 @@ paths:
               schema:
                 $ref: '#/components/schemas/user.v1.Userinfo'
           description: OK
-      summary: get user info
+      summary: get userinfo
