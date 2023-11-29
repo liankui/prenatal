@@ -1,6 +1,0 @@
-FROM centos:8
-
-ADD v1-user-server /v1-user-server
-
-WORKDIR /
-ENTRYPOINT [ "/v1-user-server" ]

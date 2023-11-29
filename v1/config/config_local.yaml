@@ -1,8 +1,0 @@
-MODE: test
-MYSQL_USERNAME: root
-MYSQL_PASSWORD: root
-MYSQL_ADDRESS: localhost:3306
-MYSQL_DATABASE: prenatal
-
-
-
