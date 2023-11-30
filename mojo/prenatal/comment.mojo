@@ -6,8 +6,9 @@ type Comment {
     question_category: String @6
 
     user_id: String @10
-    parent_comment_id: String @11
-    comment: String @12
+    user_name: String @11
+    parent_comment_id: String @15
+    comment: String @16
 
     likes: Int @20
 

@@ -1,0 +1,37 @@
+{
+    "title": "prenatal.Question",
+    "description": "",
+    "type": "object",
+    "properties": {
+        "category": {
+            "title": "mojo.core.String",
+            "type": "string"
+        },
+        "correctAnswer": {
+            "title": "mojo.core.String",
+            "type": "string"
+        },
+        "createTime": {
+            "$ref": "#/components/schemas/mojo.core.Timestamp"
+        },
+        "explanation": {
+            "title": "mojo.core.String",
+            "type": "string"
+        },
+        "id": {
+            "title": "mojo.core.String",
+            "type": "string"
+        },
+        "options": {
+            "title": "mojo.core.String",
+            "type": "string"
+        },
+        "question": {
+            "title": "mojo.core.String",
+            "type": "string"
+        },
+        "updateTime": {
+            "$ref": "#/components/schemas/mojo.core.Timestamp"
+        }
+    }
+}

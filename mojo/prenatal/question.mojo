@@ -1,6 +1,7 @@
 
 type Question {
     id: String @1
+
     category: String @2
     question: String @3
 

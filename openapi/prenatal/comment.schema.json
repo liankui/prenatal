@@ -1,0 +1,46 @@
+{
+    "title": "prenatal.Comment",
+    "description": "",
+    "type": "object",
+    "properties": {
+        "comment": {
+            "title": "mojo.core.String",
+            "type": "string"
+        },
+        "createTime": {
+            "$ref": "#/components/schemas/mojo.core.Timestamp"
+        },
+        "id": {
+            "title": "mojo.core.String",
+            "type": "string"
+        },
+        "likes": {
+            "title": "mojo.core.Int64",
+            "type": "integer",
+            "format": "Int64"
+        },
+        "parentCommentId": {
+            "title": "mojo.core.String",
+            "type": "string"
+        },
+        "questionCategory": {
+            "title": "mojo.core.String",
+            "type": "string"
+        },
+        "questionId": {
+            "title": "mojo.core.String",
+            "type": "string"
+        },
+        "updateTime": {
+            "$ref": "#/components/schemas/mojo.core.Timestamp"
+        },
+        "userId": {
+            "title": "mojo.core.String",
+            "type": "string"
+        },
+        "userName": {
+            "title": "mojo.core.String",
+            "type": "string"
+        }
+    }
+}
