@@ -1,10 +1,11 @@
 {
-    "title": "prenatal.Question",
+    "title": "prenatal.QuestionOption",
     "description": "",
     "type": "object",
     "properties": {
-        "category": {
+        "content": {
             "title": "mojo.core.String",
+            "description": "选项的描述",
             "type": "string"
         },
         "createTime": {
@@ -18,14 +19,20 @@
             "title": "mojo.core.String",
             "type": "string"
         },
-        "options": {
-            "title": "mojo.core.Array",
-            "type": "array",
-            "items": {
-                "$ref": "#/components/schemas/prenatal.QuestionOption"
-            }
+        "isCorrect": {
+            "title": "mojo.core.Bool",
+            "type": "boolean"
         },
-        "question": {
+        "option": {
+            "title": "mojo.core.String",
+            "description": "选项",
+            "type": "string"
+        },
+        "questionCategory": {
+            "title": "mojo.core.String",
+            "type": "string"
+        },
+        "questionId": {
             "title": "mojo.core.String",
             "type": "string"
         },

@@ -1,6 +1,6 @@
 
-# entity服务
-entity服务相关的接口
+# quzi服务
+quiz服务相关的接口
 [TOC]
 
 ## 整体说明
@@ -30,6 +30,46 @@ entity服务相关的接口
 | 500 | 服务器内部错误 |
 
 
+## 新增answer
+
+### 请求路径
+```http
+POST /v1/Answer
+```
+
+
+### 请求参数
+
+#### Body 请求对象
+| field | type | format | required | default | description |
+|---|---|---|---|---|---|
+| `id` | `string` |  | N |  |
+| `questionId` | `string` |  | N |  |
+| `questionCategory` | `string` |  | N |  |
+| `answer` | `string` |  | N |  |
+| `correctAnswer` | `string` |  | N |  |
+| `userId` | `string` |  | N |  |
+| `userName` | `string` |  | N |  |
+| `createTime` | `string` | `Timestamp` | N |  |  |
+| `updateTime` | `string` | `Timestamp` | N |  |  |
+
+
+### 返回值
+
+#### 返回对象
+| field | type | format | required | default | description |
+|---|---|---|---|---|---|
+| `id` | `string` |  | N |  |
+| `questionId` | `string` |  | N |  |
+| `questionCategory` | `string` |  | N |  |
+| `answer` | `string` |  | N |  |
+| `correctAnswer` | `string` |  | N |  |
+| `userId` | `string` |  | N |  |
+| `userName` | `string` |  | N |  |
+| `createTime` | `string` | `Timestamp` | N |  |  |
+| `updateTime` | `string` | `Timestamp` | N |  |  |
+
+
 ## 新增question
 
 ### 请求路径
@@ -46,8 +86,21 @@ POST /v1/questions
 | `id` | `string` |  | N |  |
 | `category` | `string` |  | N |  |
 | `question` | `string` |  | N |  |
-| `options` | `string` |  | N |  |
-| `correctAnswer` | `string` |  | N |  |
+| `options` | `Array<prenatal.QuestionOption>` |  | N |  |
+| `explanation` | `string` |  | N |  |
+| `createTime` | `string` | `Timestamp` | N |  |  |
+| `updateTime` | `string` | `Timestamp` | N |  |  |
+
+
+#### `prenatal.QuestionOption`
+| field | type | format | required | default | description |
+|---|---|---|---|---|---|
+| `id` | `string` |  | N |  |
+| `questionId` | `string` |  | N |  |
+| `questionCategory` | `string` |  | N |  |
+| `option` | `string` |  | N |  | 选项 |
+| `content` | `string` |  | N |  | 选项的描述 |
+| `isCorrect` | `boolean` |  | N |  |
 | `explanation` | `string` |  | N |  |
 | `createTime` | `string` | `Timestamp` | N |  |  |
 | `updateTime` | `string` | `Timestamp` | N |  |  |
@@ -61,8 +114,21 @@ POST /v1/questions
 | `id` | `string` |  | N |  |
 | `category` | `string` |  | N |  |
 | `question` | `string` |  | N |  |
-| `options` | `string` |  | N |  |
-| `correctAnswer` | `string` |  | N |  |
+| `options` | `Array<prenatal.QuestionOption>` |  | N |  |
+| `explanation` | `string` |  | N |  |
+| `createTime` | `string` | `Timestamp` | N |  |  |
+| `updateTime` | `string` | `Timestamp` | N |  |  |
+
+
+#### `prenatal.QuestionOption`
+| field | type | format | required | default | description |
+|---|---|---|---|---|---|
+| `id` | `string` |  | N |  |
+| `questionId` | `string` |  | N |  |
+| `questionCategory` | `string` |  | N |  |
+| `option` | `string` |  | N |  | 选项 |
+| `content` | `string` |  | N |  | 选项的描述 |
+| `isCorrect` | `boolean` |  | N |  |
 | `explanation` | `string` |  | N |  |
 | `createTime` | `string` | `Timestamp` | N |  |  |
 | `updateTime` | `string` | `Timestamp` | N |  |  |
@@ -92,8 +158,21 @@ GET /v1/questions/{id}
 | `id` | `string` |  | N |  |
 | `category` | `string` |  | N |  |
 | `question` | `string` |  | N |  |
-| `options` | `string` |  | N |  |
-| `correctAnswer` | `string` |  | N |  |
+| `options` | `Array<prenatal.QuestionOption>` |  | N |  |
+| `explanation` | `string` |  | N |  |
+| `createTime` | `string` | `Timestamp` | N |  |  |
+| `updateTime` | `string` | `Timestamp` | N |  |  |
+
+
+#### `prenatal.QuestionOption`
+| field | type | format | required | default | description |
+|---|---|---|---|---|---|
+| `id` | `string` |  | N |  |
+| `questionId` | `string` |  | N |  |
+| `questionCategory` | `string` |  | N |  |
+| `option` | `string` |  | N |  | 选项 |
+| `content` | `string` |  | N |  | 选项的描述 |
+| `isCorrect` | `boolean` |  | N |  |
 | `explanation` | `string` |  | N |  |
 | `createTime` | `string` | `Timestamp` | N |  |  |
 | `updateTime` | `string` | `Timestamp` | N |  |  |
@@ -115,8 +194,21 @@ PUT /v1/questions/{id}
 | `id` | `string` |  | N |  |
 | `category` | `string` |  | N |  |
 | `question` | `string` |  | N |  |
-| `options` | `string` |  | N |  |
-| `correctAnswer` | `string` |  | N |  |
+| `options` | `Array<prenatal.QuestionOption>` |  | N |  |
+| `explanation` | `string` |  | N |  |
+| `createTime` | `string` | `Timestamp` | N |  |  |
+| `updateTime` | `string` | `Timestamp` | N |  |  |
+
+
+#### `prenatal.QuestionOption`
+| field | type | format | required | default | description |
+|---|---|---|---|---|---|
+| `id` | `string` |  | N |  |
+| `questionId` | `string` |  | N |  |
+| `questionCategory` | `string` |  | N |  |
+| `option` | `string` |  | N |  | 选项 |
+| `content` | `string` |  | N |  | 选项的描述 |
+| `isCorrect` | `boolean` |  | N |  |
 | `explanation` | `string` |  | N |  |
 | `createTime` | `string` | `Timestamp` | N |  |  |
 | `updateTime` | `string` | `Timestamp` | N |  |  |
@@ -130,8 +222,21 @@ PUT /v1/questions/{id}
 | `id` | `string` |  | N |  |
 | `category` | `string` |  | N |  |
 | `question` | `string` |  | N |  |
-| `options` | `string` |  | N |  |
-| `correctAnswer` | `string` |  | N |  |
+| `options` | `Array<prenatal.QuestionOption>` |  | N |  |
+| `explanation` | `string` |  | N |  |
+| `createTime` | `string` | `Timestamp` | N |  |  |
+| `updateTime` | `string` | `Timestamp` | N |  |  |
+
+
+#### `prenatal.QuestionOption`
+| field | type | format | required | default | description |
+|---|---|---|---|---|---|
+| `id` | `string` |  | N |  |
+| `questionId` | `string` |  | N |  |
+| `questionCategory` | `string` |  | N |  |
+| `option` | `string` |  | N |  | 选项 |
+| `content` | `string` |  | N |  | 选项的描述 |
+| `isCorrect` | `boolean` |  | N |  |
 | `explanation` | `string` |  | N |  |
 | `createTime` | `string` | `Timestamp` | N |  |  |
 | `updateTime` | `string` | `Timestamp` | N |  |  |

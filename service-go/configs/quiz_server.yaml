@@ -1,0 +1,4 @@
+quizServer:
+  httpAddr: :22001
+  grpcAddr: :22002
+  debugAddr: :22003

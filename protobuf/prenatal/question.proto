@@ -5,6 +5,8 @@ syntax = "proto3";
 package prenatal;
 
 import "mojo/core/time.proto";
+import "mojo/mojo.proto";
+import "prenatal/question_option.proto";
 
 option go_package = "github.com/liankui/prenatal/go/pkg/prenatal;prenatal";
 option java_multiple_files = true;
@@ -15,9 +17,8 @@ message Question {
     string id = 1;
     string category = 2;
     string question = 3;
-    string options = 10;
-    string correct_answer = 11;
-    string explanation = 12;
+    repeated QuestionOption options = 10 [(mojo.reference)="", (mojo.db_json)=true];
+    string explanation = 15;
     mojo.core.Timestamp create_time = 100;
     mojo.core.Timestamp update_time = 101;
 }

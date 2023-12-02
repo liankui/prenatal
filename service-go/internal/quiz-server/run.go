@@ -61,6 +61,7 @@ func NewEndpoints(options map[string]interface{}) svc.Endpoints {
 		getQuestionEndpoint    = svc.MakeGetQuestionEndpoint(service)
 		updateQuestionEndpoint = svc.MakeUpdateQuestionEndpoint(service)
 		deleteQuestionEndpoint = svc.MakeDeleteQuestionEndpoint(service)
+		createAnswerEndpoint   = svc.MakeCreateAnswerEndpoint(service)
 	)
 
 	endpoints := svc.Endpoints{
@@ -68,6 +69,7 @@ func NewEndpoints(options map[string]interface{}) svc.Endpoints {
 		GetQuestionEndpoint:    getQuestionEndpoint,
 		UpdateQuestionEndpoint: updateQuestionEndpoint,
 		DeleteQuestionEndpoint: deleteQuestionEndpoint,
+		CreateAnswerEndpoint:   createAnswerEndpoint,
 	}
 
 	// Wrap selected Endpoints with middlewares. See handlers/middlewares.go

@@ -60,6 +60,7 @@ var (
 var (
 	_ = prenatal.Question{}
 	_ = core.Null{}
+	_ = prenatal.Answer{}
 )
 
 var cfg *nhttp.Config
@@ -118,6 +119,15 @@ func RegisterHttpHandler(router *mux.Router, endpoints Endpoints, tracer stdopen
 			EncodeHTTPGenericResponse,
 			addTracerOption("delete_question")...,
 		//append(serverOptions, httptransport.ServerBefore(opentracing.HTTPToContext(tracer, "delete_question", logger)))...,
+		))
+
+	router.Methods("POST").Path("/v1/Answer").Handler(
+		httptransport.NewServer(
+			endpoints.CreateAnswerEndpoint,
+			DecodeHTTPCreateAnswerZeroRequest,
+			EncodeHTTPGenericResponse,
+			addTracerOption("create_answer")...,
+		//append(serverOptions, httptransport.ServerBefore(opentracing.HTTPToContext(tracer, "create_answer", logger)))...,
 		))
 }
 
@@ -425,6 +435,72 @@ func DecodeHTTPDeleteQuestionZeroRequest(_ context.Context, r *http.Request) (in
 	err = mjhttp.UnmarshalPathParam(pathParams, &req.Id, "id")
 	if err != nil && !core.IsNotFoundError(err) {
 		return nil, nhttp.WrapError(err, 400, "cannot unmarshal the id  query parameter")
+	}
+
+	return &req, nil
+}
+
+// DecodeHTTPCreateAnswerZeroRequest is a transport/http.DecodeRequestFunc that
+// decodes a JSON-encoded create_answer request from the HTTP request
+// body. Primarily useful in a server.
+func DecodeHTTPCreateAnswerZeroRequest(_ context.Context, r *http.Request) (interface{}, error) {
+	var req pb.CreateAnswerRequest
+
+	// to support gzip input
+	var reader io.ReadCloser
+	var err error
+	switch r.Header.Get("Content-Encoding") {
+	case "gzip":
+		reader, err = gzip.NewReader(r.Body)
+		defer reader.Close()
+		if err != nil {
+			return nil, nhttp.WrapError(err, 400, "failed to read the gzip content")
+		}
+	default:
+		reader = r.Body
+	}
+
+	buf, err := io.ReadAll(reader)
+	if err != nil {
+		return nil, nhttp.WrapError(err, 400, "cannot read body of http request")
+	}
+	if len(buf) > 0 {
+		req.Answer = &prenatal.Answer{}
+		if err = jsoniter.ConfigFastest.Unmarshal(buf, req.Answer); err != nil {
+			const size = 8196
+			if len(buf) > size {
+				buf = buf[:size]
+			}
+			return nil, nhttp.WrapError(err,
+				http.StatusBadRequest,
+				fmt.Sprintf("request body '%s': cannot parse non-json request body", buf),
+			)
+		}
+	}
+
+	pathParams := mux.Vars(r)
+	_ = pathParams
+
+	queryParams := core.NewUrlQueryFrom(r.URL.Query())
+	_ = queryParams
+
+	parsedQueryParams := make(map[string]bool)
+	_ = parsedQueryParams
+
+	answerInitialized := false
+	if req.Answer == nil {
+		answerInitialized = true
+		req.Answer = &prenatal.Answer{}
+	}
+	err = mjhttp.UnmarshalQueryParam(queryParams, req.Answer, "answer")
+	if err != nil {
+		if core.IsNotFoundError(err) {
+			if answerInitialized {
+				req.Answer = nil
+			}
+		} else {
+			return nil, nhttp.WrapError(err, 400, "cannot unmarshal the answer  query parameter")
+		}
 	}
 
 	return &req, nil

@@ -19,6 +19,7 @@ require (
 	github.com/pkg/errors v0.9.1
 	github.com/prometheus/client_golang v1.11.1
 	github.com/rs/cors v1.7.0
+	github.com/segmentio/ksuid v1.0.4
 	go.uber.org/automaxprocs v1.3.0
 	google.golang.org/grpc v1.58.2
 )
@@ -47,6 +48,7 @@ require (
 	github.com/go-swiss/fonts v0.0.0-20230807175105-90067c2f5042 // indirect
 	github.com/gogo/protobuf v1.3.2 // indirect
 	github.com/golang/protobuf v1.5.3 // indirect
+	github.com/golang/snappy v0.0.4 // indirect
 	github.com/google/uuid v1.3.1 // indirect
 	github.com/hashicorp/hcl v1.0.0 // indirect
 	github.com/imdario/mergo v0.3.16 // indirect
@@ -60,6 +62,7 @@ require (
 	github.com/matttproud/golang_protobuf_extensions v1.0.1 // indirect
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
 	github.com/modern-go/reflect2 v1.0.2 // indirect
+	github.com/mojo-lang/db/go v0.0.0-20231010082619-1822aed7c28f // indirect
 	github.com/mojo-lang/document/go v0.0.0-20231009062124-1063661ebfdd // indirect
 	github.com/mojo-lang/lang/go v0.0.0-20231010080053-8365ee3ed1cd // indirect
 	github.com/mr-tron/base58 v1.2.0 // indirect
@@ -68,6 +71,8 @@ require (
 	github.com/prometheus/client_model v0.2.0 // indirect
 	github.com/prometheus/common v0.30.0 // indirect
 	github.com/prometheus/procfs v0.7.3 // indirect
+	github.com/smilextay/dm v0.0.0-20230925054544-9a664a54ce66 // indirect
+	github.com/smilextay/gorm-dm v0.0.0-20230925055508-bf78af3bbc54 // indirect
 	github.com/stephenafamo/goldmark-pdf v0.2.0 // indirect
 	github.com/uber/jaeger-client-go v2.25.0+incompatible // indirect
 	github.com/uber/jaeger-lib v2.4.1+incompatible // indirect
@@ -98,6 +103,6 @@ require (
 	gorm.io/driver/mysql v1.5.1 // indirect
 	gorm.io/driver/postgres v1.5.2 // indirect
 	gorm.io/driver/sqlite v1.5.3 // indirect
-	gorm.io/gorm v1.25.4 // indirect
+	gorm.io/gorm v1.25.5 // indirect
 	honnef.co/go/tools v0.0.1-2020.1.4 // indirect
 )

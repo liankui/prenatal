@@ -26,6 +26,7 @@ import (
 var (
 	_ = prenatal.Question{}
 	_ = core.Null{}
+	_ = prenatal.Answer{}
 )
 
 // Endpoints collects all of the endpoints that compose an add service. It's
@@ -46,6 +47,7 @@ type Endpoints struct {
 	GetQuestionEndpoint    endpoint.Endpoint
 	UpdateQuestionEndpoint endpoint.Endpoint
 	DeleteQuestionEndpoint endpoint.Endpoint
+	CreateAnswerEndpoint   endpoint.Endpoint
 }
 
 // Endpoints
@@ -80,6 +82,14 @@ func (e Endpoints) DeleteQuestion(ctx context.Context, in *pb.DeleteQuestionRequ
 		return nil, err
 	}
 	return response.(*core.Null), nil
+}
+
+func (e Endpoints) CreateAnswer(ctx context.Context, in *pb.CreateAnswerRequest) (*prenatal.Answer, error) {
+	response, err := e.CreateAnswerEndpoint(ctx, in)
+	if err != nil {
+		return nil, err
+	}
+	return response.(*prenatal.Answer), nil
 }
 
 // Make Endpoints
@@ -128,6 +138,17 @@ func MakeDeleteQuestionEndpoint(s pb.QuizServer) endpoint.Endpoint {
 	}
 }
 
+func MakeCreateAnswerEndpoint(s pb.QuizServer) endpoint.Endpoint {
+	return func(ctx context.Context, request interface{}) (response interface{}, err error) {
+		req := request.(*pb.CreateAnswerRequest)
+		v, err := s.CreateAnswer(ctx, req)
+		if err != nil {
+			return nil, err
+		}
+		return v, nil
+	}
+}
+
 // WrapAllExcept wraps each Endpoint field of struct Endpoints with a
 // go-kit/kit/endpoint.Middleware.
 // Use this for applying a set of middlewares to every endpoint in the service.
@@ -139,6 +160,7 @@ func (e *Endpoints) WrapAllExcept(middleware endpoint.Middleware, excluded ...st
 		"get_question":    struct{}{},
 		"update_question": struct{}{},
 		"delete_question": struct{}{},
+		"create_answer":   struct{}{},
 	}
 
 	for _, ex := range excluded {
@@ -161,6 +183,9 @@ func (e *Endpoints) WrapAllExcept(middleware endpoint.Middleware, excluded ...st
 		if inc == "delete_question" {
 			e.DeleteQuestionEndpoint = middleware(e.DeleteQuestionEndpoint)
 		}
+		if inc == "create_answer" {
+			e.CreateAnswerEndpoint = middleware(e.CreateAnswerEndpoint)
+		}
 	}
 }
 
@@ -179,6 +204,7 @@ func (e *Endpoints) WrapAllLabeledExcept(middleware func(string, endpoint.Endpoi
 		"get_question":    struct{}{},
 		"update_question": struct{}{},
 		"delete_question": struct{}{},
+		"create_answer":   struct{}{},
 	}
 
 	for _, ex := range excluded {
@@ -200,6 +226,9 @@ func (e *Endpoints) WrapAllLabeledExcept(middleware func(string, endpoint.Endpoi
 		}
 		if inc == "delete_question" {
 			e.DeleteQuestionEndpoint = middleware("delete_question", e.DeleteQuestionEndpoint)
+		}
+		if inc == "create_answer" {
+			e.CreateAnswerEndpoint = middleware("create_answer", e.CreateAnswerEndpoint)
 		}
 	}
 }

@@ -28,6 +28,7 @@ type QuizClient interface {
 	GetQuestion(ctx context.Context, in *GetQuestionRequest, opts ...grpc.CallOption) (*prenatal.Question, error)
 	UpdateQuestion(ctx context.Context, in *UpdateQuestionRequest, opts ...grpc.CallOption) (*prenatal.Question, error)
 	DeleteQuestion(ctx context.Context, in *DeleteQuestionRequest, opts ...grpc.CallOption) (*core.Null, error)
+	CreateAnswer(ctx context.Context, in *CreateAnswerRequest, opts ...grpc.CallOption) (*prenatal.Answer, error)
 }
 
 type quizClient struct {
@@ -74,6 +75,15 @@ func (c *quizClient) DeleteQuestion(ctx context.Context, in *DeleteQuestionReque
 	return out, nil
 }
 
+func (c *quizClient) CreateAnswer(ctx context.Context, in *CreateAnswerRequest, opts ...grpc.CallOption) (*prenatal.Answer, error) {
+	out := new(prenatal.Answer)
+	err := c.cc.Invoke(ctx, "/prenatal.v1.Quiz/create_answer", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // QuizServer is the server API for Quiz service.
 // All implementations must embed UnimplementedQuizServer
 // for forward compatibility
@@ -82,6 +92,7 @@ type QuizServer interface {
 	GetQuestion(context.Context, *GetQuestionRequest) (*prenatal.Question, error)
 	UpdateQuestion(context.Context, *UpdateQuestionRequest) (*prenatal.Question, error)
 	DeleteQuestion(context.Context, *DeleteQuestionRequest) (*core.Null, error)
+	CreateAnswer(context.Context, *CreateAnswerRequest) (*prenatal.Answer, error)
 	mustEmbedUnimplementedQuizServer()
 }
 
@@ -100,6 +111,9 @@ func (UnimplementedQuizServer) UpdateQuestion(context.Context, *UpdateQuestionRe
 }
 func (UnimplementedQuizServer) DeleteQuestion(context.Context, *DeleteQuestionRequest) (*core.Null, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteQuestion not implemented")
+}
+func (UnimplementedQuizServer) CreateAnswer(context.Context, *CreateAnswerRequest) (*prenatal.Answer, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateAnswer not implemented")
 }
 func (UnimplementedQuizServer) mustEmbedUnimplementedQuizServer() {}
 
@@ -186,6 +200,24 @@ func _Quiz_DeleteQuestion_Handler(srv interface{}, ctx context.Context, dec func
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Quiz_CreateAnswer_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateAnswerRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QuizServer).CreateAnswer(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/prenatal.v1.Quiz/create_answer",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QuizServer).CreateAnswer(ctx, req.(*CreateAnswerRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Quiz_ServiceDesc is the grpc.ServiceDesc for Quiz service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -208,6 +240,10 @@ var Quiz_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "delete_question",
 			Handler:    _Quiz_DeleteQuestion_Handler,
+		},
+		{
+			MethodName: "create_answer",
+			Handler:    _Quiz_CreateAnswer_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

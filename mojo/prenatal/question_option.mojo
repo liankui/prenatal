@@ -1,15 +1,14 @@
 
-type Answer {
+type QuestionOption {
     id: String @1
 
     question_id: String @5 @db.index
     question_category: String @6
 
-    answer: String @30
-    correct_answer: String @31
-
-    user_id: String @50 @db.index
-    user_name: String @51
+    option: String @10 //< 选项
+    content: String @11 //< 选项的描述
+    is_correct: Bool @15
+    explanation: String @20
 
     create_time: Timestamp @100
     update_time: Timestamp @101

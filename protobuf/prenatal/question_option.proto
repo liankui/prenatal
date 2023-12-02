@@ -9,18 +9,17 @@ import "mojo/mojo.proto";
 
 option go_package = "github.com/liankui/prenatal/go/pkg/prenatal;prenatal";
 option java_multiple_files = true;
-option java_outer_classname = "CommentProto";
+option java_outer_classname = "QuestionOptionProto";
 option java_package = "prenatal";
 
-message Comment {
+message QuestionOption {
     string id = 1;
     string question_id = 5 [(mojo.db_index)=""];
     string question_category = 6;
-    string parent_comment_id = 30;
-    string comment = 31;
-    int64 likes = 35;
-    string user_id = 50 [(mojo.db_index)=""];
-    string user_name = 51;
+    string option = 10;
+    string content = 11;
+    bool is_correct = 15;
+    string explanation = 20;
     mojo.core.Timestamp create_time = 100;
     mojo.core.Timestamp update_time = 101;
 }

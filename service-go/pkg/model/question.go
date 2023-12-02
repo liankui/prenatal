@@ -29,7 +29,7 @@ func NewQuestionModel() *QuestionModel {
 	m := &QuestionModel{DB: initDB()}
 	if !m.DB.Config.DisableAutoMigrate || !d.Migrator().HasTable(&prenatal.Question{}) {
 		if err := d.AutoMigrate(&prenatal.Question{}); err != nil {
-			logs.Error("Init Question model err: ", err)
+			logs.Error("Init Question model error: ", err)
 			panic(err)
 		}
 	}

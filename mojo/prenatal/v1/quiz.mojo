@@ -1,6 +1,6 @@
-/// entity服务
+/// quzi服务
 ///
-/// entity服务相关的接口
+/// quiz服务相关的接口
 interface Quiz {
     /// 新增question
     @entity("Question")
@@ -21,4 +21,9 @@ interface Quiz {
     @entity("Question")
     @http.delete("/v1/questions/{id}")
     delete_question(id: String @1)
+
+    /// 新增answer
+    @entity("Answer")
+    @http.post("/v1/Answer")
+    create_answer(answer: Answer @1) -> Answer
 }

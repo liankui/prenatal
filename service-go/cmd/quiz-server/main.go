@@ -45,7 +45,7 @@ func main() {
 	_ = config.ScanFrom(&conf.DebugAddr, "debugAddr")
 
 	if len(gitHash) == 0 {
-		logs.Infow("starting QuizServer. you can use `-ldflags \"-X main.GitHash=xxx\"")
+		logs.Infow("starting QuizServer, you can use `-ldflags \"-X main.gitHash=xxx\" to generate gitHash")
 	} else {
 		logs.Infow("starting QuizServer", "gitHash", gitHash, "gitBranch", gitBranch, "buildTime", buildTime)
 	}

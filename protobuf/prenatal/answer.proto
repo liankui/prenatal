@@ -5,6 +5,7 @@ syntax = "proto3";
 package prenatal;
 
 import "mojo/core/time.proto";
+import "mojo/mojo.proto";
 
 option go_package = "github.com/liankui/prenatal/go/pkg/prenatal;prenatal";
 option java_multiple_files = true;
@@ -13,11 +14,11 @@ option java_package = "prenatal";
 
 message Answer {
     string id = 1;
-    string question_id = 5;
+    string question_id = 5 [(mojo.db_index)=""];
     string question_category = 6;
     string answer = 30;
     string correct_answer = 31;
-    string user_id = 50;
+    string user_id = 50 [(mojo.db_index)=""];
     string user_name = 51;
     mojo.core.Timestamp create_time = 100;
     mojo.core.Timestamp update_time = 101;

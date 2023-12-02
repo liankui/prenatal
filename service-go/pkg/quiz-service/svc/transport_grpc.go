@@ -29,6 +29,7 @@ import (
 var (
 	_ = prenatal.Question{}
 	_ = core.Null{}
+	_ = prenatal.Answer{}
 )
 
 // MakeGRPCServer makes a set of endpoints available as a gRPC QuizServer.
@@ -76,6 +77,13 @@ func MakeGRPCServer(endpoints Endpoints, tracer stdopentracing.Tracer, logger lo
 			addTracerOption("delete_question")...,
 		//append(serverOptions, grpctransport.ServerBefore(opentracing.GRPCToContext(tracer, "delete_question", logger)))...,
 		),
+		createAnswer: grpctransport.NewServer(
+			endpoints.CreateAnswerEndpoint,
+			DecodeGRPCCreateAnswerRequest,
+			EncodeGRPCCreateAnswerResponse,
+			addTracerOption("create_answer")...,
+		//append(serverOptions, grpctransport.ServerBefore(opentracing.GRPCToContext(tracer, "create_answer", logger)))...,
+		),
 	}
 }
 
@@ -87,6 +95,7 @@ type grpcServer struct {
 	getQuestion    grpctransport.Handler
 	updateQuestion grpctransport.Handler
 	deleteQuestion grpctransport.Handler
+	createAnswer   grpctransport.Handler
 }
 
 // Methods for grpcServer to implement QuizServer interface
@@ -123,6 +132,14 @@ func (s *grpcServer) DeleteQuestion(ctx context.Context, req *pb.DeleteQuestionR
 	return rep.(*core.Null), nil
 }
 
+func (s *grpcServer) CreateAnswer(ctx context.Context, req *pb.CreateAnswerRequest) (*prenatal.Answer, error) {
+	_, rep, err := s.createAnswer.ServeGRPC(ctx, req)
+	if err != nil {
+		return nil, err
+	}
+	return rep.(*prenatal.Answer), nil
+}
+
 // Server Decode
 
 // DecodeGRPCCreateQuestionRequest is a transport/grpc.DecodeRequestFunc that converts a
@@ -153,6 +170,13 @@ func DecodeGRPCDeleteQuestionRequest(_ context.Context, grpcReq interface{}) (in
 	return req, nil
 }
 
+// DecodeGRPCCreateAnswerRequest is a transport/grpc.DecodeRequestFunc that converts a
+// gRPC CreateAnswer request to a user-domain CreateAnswer request. Primarily useful in a server.
+func DecodeGRPCCreateAnswerRequest(_ context.Context, grpcReq interface{}) (interface{}, error) {
+	req := grpcReq.(*pb.CreateAnswerRequest)
+	return req, nil
+}
+
 // Server Encode
 
 // EncodeGRPCCreateQuestionResponse is a transport/grpc.EncodeResponseFunc that converts a
@@ -180,6 +204,13 @@ func EncodeGRPCUpdateQuestionResponse(_ context.Context, response interface{}) (
 // user-domain DeleteQuestion response to a gRPC DeleteQuestion reply. Primarily useful in a server.
 func EncodeGRPCDeleteQuestionResponse(_ context.Context, response interface{}) (interface{}, error) {
 	resp := response.(*core.Null)
+	return resp, nil
+}
+
+// EncodeGRPCCreateAnswerResponse is a transport/grpc.EncodeResponseFunc that converts a
+// user-domain CreateAnswer response to a gRPC CreateAnswer reply. Primarily useful in a server.
+func EncodeGRPCCreateAnswerResponse(_ context.Context, response interface{}) (interface{}, error) {
+	resp := response.(*prenatal.Answer)
 	return resp, nil
 }
 

@@ -30,4 +30,5 @@ func InitModel() {
 	_ = GetAnswerModel()
 	_ = GetQuestionModel()
 	_ = GetCommentModel()
+	_ = GetQuestionOptionModel()
 }

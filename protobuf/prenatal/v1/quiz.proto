@@ -5,6 +5,8 @@ syntax = "proto3";
 package prenatal.v1;
 
 import "mojo/core/null.proto";
+import "mojo/mojo.proto";
+import "prenatal/answer.proto";
 import "prenatal/question.proto";
 
 option go_package = "github.com/liankui/prenatal/go/pkg/prenatal/v1;prenatal";
@@ -28,9 +30,14 @@ message DeleteQuestionRequest {
     string id = 1;
 }
 
+message CreateAnswerRequest {
+    prenatal.Answer answer = 1;
+}
+
 service Quiz {
     rpc create_question(CreateQuestionRequest) returns (prenatal.Question);
     rpc get_question(GetQuestionRequest) returns (prenatal.Question);
     rpc update_question(UpdateQuestionRequest) returns (prenatal.Question);
     rpc delete_question(DeleteQuestionRequest) returns (mojo.core.Null);
+    rpc create_answer(CreateAnswerRequest) returns (prenatal.Answer);
 }

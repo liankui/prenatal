@@ -4,9 +4,8 @@ type Question {
     category: String @2
     question: String @3
 
-    options: String @10
-    correct_answer: String @11
-    explanation: String @12
+    options: [QuestionOption] @10 @db.json
+    explanation: String @15
 
     create_time: Timestamp @100
     update_time: Timestamp @101
