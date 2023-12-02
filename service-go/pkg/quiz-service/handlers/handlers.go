@@ -3,8 +3,10 @@ package handlers
 import (
 	"context"
 
-	"github.com/liankui/prenatal/go/pkg/prenatal"
 	"github.com/mojo-lang/core/go/pkg/mojo/core"
+
+	"github.com/liankui/prenatal/go/pkg/prenatal"
+	"github.com/liankui/prenatal/service-go/pkg/model"
 
 	// this service api
 	pb "github.com/liankui/prenatal/go/pkg/prenatal/v1"
@@ -17,6 +19,10 @@ var (
 
 type quizServer struct {
 	pb.UnimplementedQuizServer
+}
+
+func init() {
+	model.InitModel()
 }
 
 // NewService returns a naive, stateless implementation of Interface.

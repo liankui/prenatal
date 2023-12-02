@@ -25,3 +25,9 @@ func initDB() *db.DB {
 
 	return d
 }
+
+func InitModel() {
+	_ = GetAnswerModel()
+	_ = GetQuestionModel()
+	_ = GetCommentModel()
+}
