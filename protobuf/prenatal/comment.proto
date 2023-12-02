@@ -15,11 +15,11 @@ message Comment {
     string id = 1;
     string question_id = 5;
     string question_category = 6;
-    string user_id = 10;
-    string user_name = 11;
-    string parent_comment_id = 15;
-    string comment = 16;
-    int64 likes = 20;
+    string parent_comment_id = 30;
+    string comment = 31;
+    int64 likes = 35;
+    string user_id = 50;
+    string user_name = 51;
     mojo.core.Timestamp create_time = 100;
     mojo.core.Timestamp update_time = 101;
 }

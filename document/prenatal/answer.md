@@ -3,10 +3,9 @@
 | `id` | `string` |  | N |  |
 | `questionId` | `string` |  | N |  |
 | `questionCategory` | `string` |  | N |  |
+| `answer` | `string` |  | N |  |
+| `correctAnswer` | `string` |  | N |  |
 | `userId` | `string` |  | N |  |
 | `userName` | `string` |  | N |  |
-| `answer` | `string` |  | N |  |
-| `isCorrect` | `boolean` |  | N |  |
-| `userComment` | `string` |  | N |  |
 | `createTime` | `string` | `Timestamp` | N |  |  |
 | `updateTime` | `string` | `Timestamp` | N |  |  |

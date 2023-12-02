@@ -7,16 +7,16 @@
             "title": "mojo.core.String",
             "type": "string"
         },
+        "correctAnswer": {
+            "title": "mojo.core.String",
+            "type": "string"
+        },
         "createTime": {
             "$ref": "#/components/schemas/mojo.core.Timestamp"
         },
         "id": {
             "title": "mojo.core.String",
             "type": "string"
-        },
-        "isCorrect": {
-            "title": "mojo.core.Bool",
-            "type": "boolean"
         },
         "questionCategory": {
             "title": "mojo.core.String",
@@ -28,10 +28,6 @@
         },
         "updateTime": {
             "$ref": "#/components/schemas/mojo.core.Timestamp"
-        },
-        "userComment": {
-            "title": "mojo.core.String",
-            "type": "string"
         },
         "userId": {
             "title": "mojo.core.String",

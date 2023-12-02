@@ -15,11 +15,10 @@ message Answer {
     string id = 1;
     string question_id = 5;
     string question_category = 6;
-    string user_id = 10;
-    string user_name = 12;
-    string answer = 15;
-    bool is_correct = 20;
-    string user_comment = 21;
+    string answer = 30;
+    string correct_answer = 31;
+    string user_id = 50;
+    string user_name = 51;
     mojo.core.Timestamp create_time = 100;
     mojo.core.Timestamp update_time = 101;
 }

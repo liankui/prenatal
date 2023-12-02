@@ -5,12 +5,11 @@ type Answer {
     question_id: String @5
     question_category: String @6
 
-    user_id: String @10
-    user_name: String @12
-    answer: String @15
+    answer: String @30
+    correct_answer: String @31
 
-    is_correct: Bool @20
-    user_comment: String @21
+    user_id: String @50
+    user_name: String @51
 
     create_time: Timestamp @100
     update_time: Timestamp @101
