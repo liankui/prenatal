@@ -31,6 +31,14 @@
         },
         "updateTime": {
             "$ref": "#/components/schemas/mojo.core.Timestamp"
+        },
+        "userId": {
+            "title": "mojo.core.String",
+            "type": "string"
+        },
+        "userName": {
+            "title": "mojo.core.String",
+            "type": "string"
         }
     }
 }

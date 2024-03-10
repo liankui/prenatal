@@ -1,4 +1,4 @@
-/// quzi服务
+/// quiz服务
 ///
 /// quiz服务相关的接口
 interface Quiz {

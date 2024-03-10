@@ -1,5 +1,5 @@
 
-# quzi服务
+# quiz服务
 quiz服务相关的接口
 [TOC]
 
@@ -88,6 +88,8 @@ POST /v1/questions
 | `question` | `string` |  | N |  |
 | `options` | `Array<prenatal.QuestionOption>` |  | N |  |
 | `explanation` | `string` |  | N |  |
+| `userId` | `string` |  | N |  |
+| `userName` | `string` |  | N |  |
 | `createTime` | `string` | `Timestamp` | N |  |  |
 | `updateTime` | `string` | `Timestamp` | N |  |  |
 
@@ -116,6 +118,8 @@ POST /v1/questions
 | `question` | `string` |  | N |  |
 | `options` | `Array<prenatal.QuestionOption>` |  | N |  |
 | `explanation` | `string` |  | N |  |
+| `userId` | `string` |  | N |  |
+| `userName` | `string` |  | N |  |
 | `createTime` | `string` | `Timestamp` | N |  |  |
 | `updateTime` | `string` | `Timestamp` | N |  |  |
 
@@ -160,6 +164,8 @@ GET /v1/questions/{id}
 | `question` | `string` |  | N |  |
 | `options` | `Array<prenatal.QuestionOption>` |  | N |  |
 | `explanation` | `string` |  | N |  |
+| `userId` | `string` |  | N |  |
+| `userName` | `string` |  | N |  |
 | `createTime` | `string` | `Timestamp` | N |  |  |
 | `updateTime` | `string` | `Timestamp` | N |  |  |
 
@@ -196,6 +202,8 @@ PUT /v1/questions/{id}
 | `question` | `string` |  | N |  |
 | `options` | `Array<prenatal.QuestionOption>` |  | N |  |
 | `explanation` | `string` |  | N |  |
+| `userId` | `string` |  | N |  |
+| `userName` | `string` |  | N |  |
 | `createTime` | `string` | `Timestamp` | N |  |  |
 | `updateTime` | `string` | `Timestamp` | N |  |  |
 
@@ -224,6 +232,8 @@ PUT /v1/questions/{id}
 | `question` | `string` |  | N |  |
 | `options` | `Array<prenatal.QuestionOption>` |  | N |  |
 | `explanation` | `string` |  | N |  |
+| `userId` | `string` |  | N |  |
+| `userName` | `string` |  | N |  |
 | `createTime` | `string` | `Timestamp` | N |  |  |
 | `updateTime` | `string` | `Timestamp` | N |  |  |
 

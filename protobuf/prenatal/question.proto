@@ -19,6 +19,8 @@ message Question {
     string question = 3;
     repeated QuestionOption options = 10 [(mojo.reference)="", (mojo.db_json)=true];
     string explanation = 15;
+    string user_id = 50 [(mojo.db_index)=""];
+    string user_name = 51;
     mojo.core.Timestamp create_time = 100;
     mojo.core.Timestamp update_time = 101;
 }

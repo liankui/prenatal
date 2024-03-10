@@ -93,6 +93,12 @@ components:
           type: string
         updateTime:
           $ref: '#/components/schemas/mojo.core.Timestamp'
+        userId:
+          title: mojo.core.String
+          type: string
+        userName:
+          title: mojo.core.String
+          type: string
       title: prenatal.Question
       type: object
     prenatal.QuestionOption:
@@ -129,7 +135,7 @@ components:
       type: object
 info:
   description: quiz服务相关的接口
-  title: quzi服务
+  title: quiz服务
   version: 0.1.0
 openapi: 3.0.3
 paths:
