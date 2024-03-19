@@ -1,6 +1,0 @@
-FROM alpine:3.18.4
-
-ADD v1-quiz-server /v1-quiz-server
-
-WORKDIR /
-ENTRYPOINT [ "/v1-quiz-server" ]
