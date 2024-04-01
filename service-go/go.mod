@@ -1,12 +1,12 @@
 module github.com/liankui/prenatal/service-go
 
-go 1.21.6
+go 1.19
 
 replace github.com/liankui/prenatal/go => ../go
 
 require (
-	github.com/chaos-io/chaos v0.0.0-20240401084440-0d2b65e3d443
-	github.com/chaos-io/chaos/gokit v0.0.0-20240401084440-0d2b65e3d443
+	github.com/chaos-io/chaos v0.0.0-20240401095117-54218f940eb0
+	github.com/chaos-io/chaos/gokit v0.0.0-20240401095411-7eba1652dfa4
 	github.com/etherlabsio/healthcheck/v2 v2.0.0
 	github.com/go-kit/kit v0.13.0
 	github.com/gorilla/mux v1.7.4
