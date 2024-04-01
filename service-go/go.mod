@@ -14,7 +14,6 @@ require (
 	github.com/mojo-lang/core/go v0.0.0-20231031025332-d772921211c7
 	github.com/mojo-lang/http/go v0.0.0-20231026054523-2cf45f147a95
 	github.com/ncraft-io/ncraft-gokit v0.0.0-20231030074420-02d8bebbc396
-	github.com/ncraft-io/ncraft/go v0.0.0-20231109080056-6c737c79d0cf
 	github.com/opentracing/opentracing-go v1.2.0
 	github.com/pkg/errors v0.9.1
 	github.com/prometheus/client_golang v1.11.1
@@ -67,6 +66,7 @@ require (
 	github.com/mojo-lang/lang/go v0.0.0-20231010080053-8365ee3ed1cd // indirect
 	github.com/mr-tron/base58 v1.2.0 // indirect
 	github.com/nacos-group/nacos-sdk-go v1.1.4 // indirect
+	github.com/ncraft-io/ncraft/go v0.0.0-20231109080056-6c737c79d0cf // indirect
 	github.com/phpdave11/gofpdf v1.4.2 // indirect
 	github.com/prometheus/client_model v0.2.0 // indirect
 	github.com/prometheus/common v0.30.0 // indirect

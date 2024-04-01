@@ -11,6 +11,7 @@ package svc
 import (
 	"bytes"
 	"compress/gzip"
+	"context"
 	"encoding/json"
 	"fmt"
 	"io"
@@ -20,13 +21,11 @@ import (
 	"strconv"
 	"strings"
 
-	"context"
-
+	"github.com/chaos-io/chaos/logs"
 	"github.com/go-kit/kit/log"
 	"github.com/go-kit/kit/tracing/opentracing"
 	"github.com/gorilla/mux"
 	"github.com/json-iterator/go"
-	"github.com/ncraft-io/ncraft/go/pkg/ncraft/logs"
 	"github.com/pkg/errors"
 
 	httptransport "github.com/go-kit/kit/transport/http"
@@ -91,7 +90,7 @@ func RegisterHttpHandler(router *mux.Router, endpoints Endpoints, tracer stdopen
 			DecodeHTTPCreateQuestionZeroRequest,
 			EncodeHTTPGenericResponse,
 			addTracerOption("create_question")...,
-		//append(serverOptions, httptransport.ServerBefore(opentracing.HTTPToContext(tracer, "create_question", logger)))...,
+		// append(serverOptions, httptransport.ServerBefore(opentracing.HTTPToContext(tracer, "create_question", logger)))...,
 		))
 
 	router.Methods("GET").Path("/v1/questions/{id}").Handler(
@@ -100,7 +99,7 @@ func RegisterHttpHandler(router *mux.Router, endpoints Endpoints, tracer stdopen
 			DecodeHTTPGetQuestionZeroRequest,
 			EncodeHTTPGenericResponse,
 			addTracerOption("get_question")...,
-		//append(serverOptions, httptransport.ServerBefore(opentracing.HTTPToContext(tracer, "get_question", logger)))...,
+		// append(serverOptions, httptransport.ServerBefore(opentracing.HTTPToContext(tracer, "get_question", logger)))...,
 		))
 
 	router.Methods("PUT").Path("/v1/questions/{id}").Handler(
@@ -109,7 +108,7 @@ func RegisterHttpHandler(router *mux.Router, endpoints Endpoints, tracer stdopen
 			DecodeHTTPUpdateQuestionZeroRequest,
 			EncodeHTTPGenericResponse,
 			addTracerOption("update_question")...,
-		//append(serverOptions, httptransport.ServerBefore(opentracing.HTTPToContext(tracer, "update_question", logger)))...,
+		// append(serverOptions, httptransport.ServerBefore(opentracing.HTTPToContext(tracer, "update_question", logger)))...,
 		))
 
 	router.Methods("DELETE").Path("/v1/questions/{id}").Handler(
@@ -118,7 +117,7 @@ func RegisterHttpHandler(router *mux.Router, endpoints Endpoints, tracer stdopen
 			DecodeHTTPDeleteQuestionZeroRequest,
 			EncodeHTTPGenericResponse,
 			addTracerOption("delete_question")...,
-		//append(serverOptions, httptransport.ServerBefore(opentracing.HTTPToContext(tracer, "delete_question", logger)))...,
+		// append(serverOptions, httptransport.ServerBefore(opentracing.HTTPToContext(tracer, "delete_question", logger)))...,
 		))
 
 	router.Methods("POST").Path("/v1/Answer").Handler(
@@ -127,7 +126,7 @@ func RegisterHttpHandler(router *mux.Router, endpoints Endpoints, tracer stdopen
 			DecodeHTTPCreateAnswerZeroRequest,
 			EncodeHTTPGenericResponse,
 			addTracerOption("create_answer")...,
-		//append(serverOptions, httptransport.ServerBefore(opentracing.HTTPToContext(tracer, "create_answer", logger)))...,
+		// append(serverOptions, httptransport.ServerBefore(opentracing.HTTPToContext(tracer, "create_answer", logger)))...,
 		))
 }
 
