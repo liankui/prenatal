@@ -9,8 +9,8 @@ import (
 	"flag"
 
 	"github.com/chaos-io/chaos/config"
+	nserver "github.com/chaos-io/chaos/gokit/server"
 	"github.com/chaos-io/chaos/logs"
-	nserver "github.com/ncraft-io/ncraft-gokit/pkg/server"
 
 	// This Service
 	"github.com/liankui/prenatal/service-go/internal/quiz-server"

@@ -30,8 +30,8 @@ import (
 
 	httptransport "github.com/go-kit/kit/transport/http"
 	mjhttp "github.com/mojo-lang/http/go/pkg/mojo/http"
-	pagination "github.com/ncraft-io/ncraft-gokit/pkg/pagination"
-	nhttp "github.com/ncraft-io/ncraft-gokit/pkg/transport/http"
+	pagination "github.com/chaos-io/chaos/gokit/pagination"
+	nhttp "github.com/chaos-io/chaos/gokit/transport/http"
 	stdopentracing "github.com/opentracing/opentracing-go"
 
 	"github.com/mojo-lang/core/go/pkg/mojo/core"

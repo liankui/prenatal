@@ -8,40 +8,32 @@ package server
 import (
 	"context"
 	"fmt"
-	"github.com/gorilla/mux"
 	"net"
-
-	"github.com/rs/cors"
 	"net/http"
 	"net/http/pprof"
 	"strings"
 	"time"
 
-	// 3d Party
+	nclient "github.com/chaos-io/chaos/gokit/client"
+	"github.com/chaos-io/chaos/gokit/kit"
+	"github.com/chaos-io/chaos/gokit/metrics"
+	"github.com/chaos-io/chaos/gokit/sd"
+	nserver "github.com/chaos-io/chaos/gokit/server"
+	"github.com/chaos-io/chaos/gokit/tracing"
+	"github.com/chaos-io/chaos/gokit/utils/network"
+	"github.com/chaos-io/chaos/logs"
 	"github.com/etherlabsio/healthcheck/v2"
+	kitprometheus "github.com/go-kit/kit/metrics/prometheus"
+	"github.com/gorilla/mux"
+	stdprometheus "github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
+	"github.com/rs/cors"
+	_ "go.uber.org/automaxprocs"
 	"google.golang.org/grpc"
 
-	"github.com/ncraft-io/ncraft-gokit/pkg/utils/network"
-	_ "go.uber.org/automaxprocs"
-
-	"github.com/chaos-io/chaos/logs"
-	nclient "github.com/ncraft-io/ncraft-gokit/pkg/client"
-
-	"github.com/ncraft-io/ncraft-gokit/pkg/kit"
-	"github.com/ncraft-io/ncraft-gokit/pkg/metrics"
-	"github.com/ncraft-io/ncraft-gokit/pkg/sd"
-	nserver "github.com/ncraft-io/ncraft-gokit/pkg/server"
-	"github.com/ncraft-io/ncraft-gokit/pkg/tracing"
-
-	kitprometheus "github.com/go-kit/kit/metrics/prometheus"
-	stdprometheus "github.com/prometheus/client_golang/prometheus"
-
+	pb "github.com/liankui/prenatal/go/pkg/prenatal/v1"
 	"github.com/liankui/prenatal/service-go/pkg/quiz-service/handlers"
 	"github.com/liankui/prenatal/service-go/pkg/quiz-service/svc"
-
-	// This Service api
-	pb "github.com/liankui/prenatal/go/pkg/prenatal/v1"
 )
 
 var _ nclient.Config
@@ -129,8 +121,8 @@ func RegisterService(cfg nserver.Config, r *mux.Router, s *grpc.Server) svc.Endp
 	}
 
 	// required service clients ...
-	//xxClient := xx_client.New(nclient.NewConfig("xx"), sdClient.Instancer(FullServiceName), tracer, logger)
-	//defer xxClient.Close()
+	// xxClient := xx_client.New(nclient.NewConfig("xx"), sdClient.Instancer(FullServiceName), tracer, logger)
+	// defer xxClient.Close()
 
 	endpoints := NewEndpoints(options)
 
@@ -199,11 +191,11 @@ func Run(cfg nserver.Config) {
 		errc <- s.Serve(ln)
 	}()
 
-	//if watchObj, err := config.WatchFunc(level.ChangeLogLevel, level.LevelPath); err == nil {
+	// if watchObj, err := config.WatchFunc(level.ChangeLogLevel, level.LevelPath); err == nil {
 	//    defer func() { _ = watchObj.Close() }()
-	//} else {
+	// } else {
 	//    panic(err.Error())
-	//}
+	// }
 	_ = endpoints
 
 	// Run!
@@ -224,10 +216,10 @@ func getGrpcPort(addr string) string {
 func unaryServerFilter(ctx context.Context, req interface{},
 	info *grpc.UnaryServerInfo,
 	handler grpc.UnaryHandler) (resp interface{}, err error) {
-	//if err := middleware.Validate(req); err != nil {
+	// if err := middleware.Validate(req); err != nil {
 	//	logs.Errorf("validate request failed, err: %s", err)
 	//	return nil, core.NewError(http.StatusBadRequest, err.Error())
-	//}
+	// }
 
 	defer func() {
 		if r := recover(); r != nil {
@@ -240,14 +232,14 @@ func unaryServerFilter(ctx context.Context, req interface{},
 		return resp, err
 	}
 
-	//var validatorCfg middleware.ValidatorConfig
-	//_ = config.ScanKey("validator", &validatorCfg)
-	//if !validatorCfg.CheckResponse {
+	// var validatorCfg middleware.ValidatorConfig
+	// _ = config.ScanKey("validator", &validatorCfg)
+	// if !validatorCfg.CheckResponse {
 	//	return
-	//}
-	//if err = middleware.Validate(resp); err != nil {
+	// }
+	// if err = middleware.Validate(resp); err != nil {
 	//	logs.Errorf("validate response failed, err: %s", err)
 	//	return nil, core.NewError(http.StatusInternalServerError, err.Error())
-	//}
+	// }
 	return
 }

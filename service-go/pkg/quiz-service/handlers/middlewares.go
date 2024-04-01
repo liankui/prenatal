@@ -1,14 +1,13 @@
 package handlers
 
 import (
+	"github.com/chaos-io/chaos/gokit/middleware"
 	kitprometheus "github.com/go-kit/kit/metrics/prometheus"
 	"github.com/go-kit/kit/tracing/opentracing"
-	"github.com/ncraft-io/ncraft-gokit/pkg/middleware"
+	"github.com/mojo-lang/core/go/pkg/mojo/core"
 	stdopentracing "github.com/opentracing/opentracing-go"
 
 	"github.com/liankui/prenatal/go/pkg/prenatal"
-	"github.com/mojo-lang/core/go/pkg/mojo/core"
-
 	"github.com/liankui/prenatal/service-go/pkg/quiz-service/svc"
 
 	// this service api
@@ -55,10 +54,10 @@ func WrapEndpoints(in svc.Endpoints, options map[string]interface{}) svc.Endpoin
 	if value, ok := options["latency"]; ok && value != nil {
 		latency = value.(*kitprometheus.Histogram)
 	}
-	//var validator *middleware.Validator
-	//if value, ok := options["validator"]; ok && value != nil {
+	// var validator *middleware.Validator
+	// if value, ok := options["validator"]; ok && value != nil {
 	//	validator = value.(*middleware.Validator)
-	//}
+	// }
 
 	{ // create_question
 		if tracer != nil {
@@ -67,9 +66,9 @@ func WrapEndpoints(in svc.Endpoints, options map[string]interface{}) svc.Endpoin
 		if count != nil && latency != nil {
 			in.CreateQuestionEndpoint = middleware.Instrumenting(latency.With("method", "create_question"), count.With("method", "create_question"))(in.CreateQuestionEndpoint)
 		}
-		//if validator != nil {
+		// if validator != nil {
 		//	in.CreateQuestionEndpoint = validator.Validate()(in.CreateQuestionEndpoint)
-		//}
+		// }
 	}
 	{ // get_question
 		if tracer != nil {
@@ -78,9 +77,9 @@ func WrapEndpoints(in svc.Endpoints, options map[string]interface{}) svc.Endpoin
 		if count != nil && latency != nil {
 			in.GetQuestionEndpoint = middleware.Instrumenting(latency.With("method", "get_question"), count.With("method", "get_question"))(in.GetQuestionEndpoint)
 		}
-		//if validator != nil {
+		// if validator != nil {
 		//	in.GetQuestionEndpoint = validator.Validate()(in.GetQuestionEndpoint)
-		//}
+		// }
 	}
 	{ // update_question
 		if tracer != nil {
@@ -89,9 +88,9 @@ func WrapEndpoints(in svc.Endpoints, options map[string]interface{}) svc.Endpoin
 		if count != nil && latency != nil {
 			in.UpdateQuestionEndpoint = middleware.Instrumenting(latency.With("method", "update_question"), count.With("method", "update_question"))(in.UpdateQuestionEndpoint)
 		}
-		//if validator != nil {
+		// if validator != nil {
 		//	in.UpdateQuestionEndpoint = validator.Validate()(in.UpdateQuestionEndpoint)
-		//}
+		// }
 	}
 	{ // delete_question
 		if tracer != nil {
@@ -100,9 +99,9 @@ func WrapEndpoints(in svc.Endpoints, options map[string]interface{}) svc.Endpoin
 		if count != nil && latency != nil {
 			in.DeleteQuestionEndpoint = middleware.Instrumenting(latency.With("method", "delete_question"), count.With("method", "delete_question"))(in.DeleteQuestionEndpoint)
 		}
-		//if validator != nil {
+		// if validator != nil {
 		//	in.DeleteQuestionEndpoint = validator.Validate()(in.DeleteQuestionEndpoint)
-		//}
+		// }
 	}
 
 	return in

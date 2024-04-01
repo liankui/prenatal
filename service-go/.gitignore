@@ -64,7 +64,7 @@ _deps
 ### Go Patch ###
 /go/vendor/
 /Godeps/
-service-go/cmd/quiz-server/quiz-server
+./service-go/cmd/quiz-server/quiz-server
 
 ### Intellij+all ###
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio and WebStorm
