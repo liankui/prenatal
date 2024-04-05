@@ -64,7 +64,7 @@ _deps
 ### Go Patch ###
 /go/vendor/
 /Godeps/
-service-go/cmd/quiz-server/quiz-server
+cmd/quiz-server/quiz-server
 
 ### Intellij+all ###
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio and WebStorm
@@ -200,5 +200,5 @@ java/mojo-parser/target/
 # End of https://www.gitignore.io/api/go,c++,java,cmake,intellij+all,visualstudiocode
 
 # srcript #
-service-go/scripts/*local.sh
+scripts/*local.sh
 
