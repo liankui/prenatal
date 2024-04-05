@@ -198,3 +198,7 @@ java/target/
 java/mojo-parser/target/
 
 # End of https://www.gitignore.io/api/go,c++,java,cmake,intellij+all,visualstudiocode
+
+# srcript #
+service-go/scripts/*local.sh
+
