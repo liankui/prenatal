@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Dockerfile用于快速构建，使用本地机器构建二进制，并copy到镜像中
+# Dockerfile-action用于多平台构建，使用docker容器分阶段构建镜像
 set -e
 
 case "$1" in
@@ -10,14 +10,11 @@ esac
 
 PWD=$(cd "$(dirname "$0")" && pwd)
 serviceGoDir=$(cd "$PWD"/.. && pwd)
-cmdDir="$serviceGoDir"/cmd
 remotePrefix=ericyami
 tag=latest
 
 gitBranch=$(git branch --show-current)
 gitHash=$(git rev-list -1 HEAD)
-
-(cd "$cmdDir"/quiz-server && ./xbuild.sh linux "$ARCH")
 
 SERVERS=(quiz-server)
 cd "$serviceGoDir"/build/quiz-server-docker
@@ -25,7 +22,7 @@ for server in "${SERVERS[@]}"; do
   cd ../"$server"-docker
   (
     set -x
-    docker build -f Dockerfile --platform linux/"$ARCH" --build-arg GIT_BRANCH="$gitBranch" --build-arg GIT_HASH="$gitHash" -t "$remotePrefix"/prenatal-"$server":"$tag" "$serviceGoDir"
+    docker build -f Dockerfile-action --platform linux/"$ARCH" --build-arg GIT_BRANCH="$gitBranch" --build-arg GIT_HASH="$gitHash" -t "$remotePrefix"/prenatal-"$server":"$tag" "$serviceGoDir"/..
     docker push "$remotePrefix"/prenatal-"$server":"$tag"
   )
 done

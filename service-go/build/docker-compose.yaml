@@ -1,0 +1,39 @@
+version: '3'
+networks:
+  prenatal-network:
+    driver: bridge
+
+services:
+  mysql:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_ROOT_HOST: '%'
+      MYSQL_DATABASE: 'prenatal'
+      MYSQL_USER: 'prenatal'
+      MYSQL_PASSWORD: 'prenatal'
+      MYSQL_ROOT_PASSWORD: '!Q@W3e4r'
+      TZ: Asia/Shanghai
+    ports:
+      - '3306:3306'
+    volumes:
+      - db_data:/var/lib/mysql
+    container_name: prenatal-mysql
+  quiz-server:
+    image: ericyami/prenatal-quiz-server:latest
+    restart: unless-stopped
+    ports:
+      - "22001:22001"
+      - "22002:22002"
+      - "22003:22003"
+    networks:
+      - prenatal-network
+    volumes:
+      - quiz_logs:/logs
+    container_name: quiz-server
+    depends_on:
+      - mysql
+
+volumes:
+  db_data:
+  quiz_logs:
