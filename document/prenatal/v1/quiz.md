@@ -34,7 +34,7 @@ quiz服务相关的接口
 
 ### 请求路径
 ```http
-POST /v1/Answer
+POST /v1/Answers
 ```
 
 
@@ -70,7 +70,7 @@ POST /v1/Answer
 | `updateTime` | `string` | `Timestamp` | N |  |  |
 
 
-## 新增question
+## 新增question信息
 
 ### 请求路径
 ```http
@@ -138,7 +138,7 @@ POST /v1/questions
 | `updateTime` | `string` | `Timestamp` | N |  |  |
 
 
-## 获取question详情
+## 获取question信息
 
 ### 请求路径
 ```http
@@ -194,32 +194,16 @@ PUT /v1/questions/{id}
 
 ### 请求参数
 
-#### Body 请求对象
-| field | type | format | required | default | description |
-|---|---|---|---|---|---|
-| `id` | `string` |  | N |  |
-| `category` | `string` |  | N |  |
-| `question` | `string` |  | N |  |
-| `options` | `Array<prenatal.QuestionOption>` |  | N |  |
-| `explanation` | `string` |  | N |  |
-| `userId` | `string` |  | N |  |
-| `userName` | `string` |  | N |  |
-| `createTime` | `string` | `Timestamp` | N |  |  |
-| `updateTime` | `string` | `Timestamp` | N |  |  |
+#### Path 参数
+| 参数名 | 参数类型 | 格式类型 | 说明 |
+|---|---|---|---|
+| `id` | `string` |  |  |
 
 
-#### `prenatal.QuestionOption`
-| field | type | format | required | default | description |
+#### Query 参数
+| 参数名 | 参数类型 | 格式类型 | 是否必须 | 默认值 | 说明 |
 |---|---|---|---|---|---|
-| `id` | `string` |  | N |  |
-| `questionId` | `string` |  | N |  |
-| `questionCategory` | `string` |  | N |  |
-| `option` | `string` |  | N |  | 选项 |
-| `content` | `string` |  | N |  | 选项的描述 |
-| `isCorrect` | `boolean` |  | N |  |
-| `explanation` | `string` |  | N |  |
-| `createTime` | `string` | `Timestamp` | N |  |  |
-| `updateTime` | `string` | `Timestamp` | N |  |  |
+| `question` | `prenatal.Question` |  | 否 |  |  |
 
 
 ### 返回值

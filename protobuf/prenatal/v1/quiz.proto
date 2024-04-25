@@ -23,7 +23,8 @@ message GetQuestionRequest {
 }
 
 message UpdateQuestionRequest {
-    prenatal.Question question = 1;
+    string id = 1;
+    prenatal.Question question = 2;
 }
 
 message DeleteQuestionRequest {

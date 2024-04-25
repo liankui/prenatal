@@ -94,7 +94,7 @@ func (s quizServer) GetQuestion(ctx context.Context, in *pb.GetQuestionRequest) 
 func (s quizServer) UpdateQuestion(ctx context.Context, in *pb.UpdateQuestionRequest) (*prenatal.Question, error) {
 	logs.Infow("UpdateQuestion", "request", in)
 
-	if in.Question.Id == "" {
+	if in.Id == "" {
 		return nil, core.NewErrorFrom(400, "id is NOT set")
 	}
 	if in.Question.Question == "" {

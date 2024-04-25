@@ -120,7 +120,7 @@ func RegisterHttpHandler(router *mux.Router, endpoints Endpoints, tracer stdopen
 		// append(serverOptions, httptransport.ServerBefore(opentracing.HTTPToContext(tracer, "delete_question", logger)))...,
 		))
 
-	router.Methods("POST").Path("/v1/Answer").Handler(
+	router.Methods("POST").Path("/v1/Answers").Handler(
 		httptransport.NewServer(
 			endpoints.CreateAnswerEndpoint,
 			DecodeHTTPCreateAnswerZeroRequest,
@@ -365,6 +365,11 @@ func DecodeHTTPUpdateQuestionZeroRequest(_ context.Context, r *http.Request) (in
 
 	parsedQueryParams := make(map[string]bool)
 	_ = parsedQueryParams
+
+	err = mjhttp.UnmarshalPathParam(pathParams, &req.Id, "id")
+	if err != nil && !core.IsNotFoundError(err) {
+		return nil, nhttp.WrapError(err, 400, "cannot unmarshal the id  query parameter")
+	}
 
 	questionInitialized := false
 	if req.Question == nil {

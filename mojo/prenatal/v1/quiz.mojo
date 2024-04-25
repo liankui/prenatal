@@ -2,12 +2,12 @@
 ///
 /// quiz服务相关的接口
 interface Quiz {
-    /// 新增question
+    /// 新增question信息
     @entity("Question")
     @http.post("/v1/questions")
     create_question(question: Question @1) -> Question
 
-    /// 获取question详情
+    /// 获取question信息
     @entity("Question")
     @http.get("/v1/questions/{id}")
     get_question(id: String @1) -> Question
@@ -15,7 +15,9 @@ interface Quiz {
     /// 更新question信息
     @entity("Question")
     @http.put("/v1/questions/{id}")
-    update_question(question: Question @1) -> Question
+    update_question(id: String @1
+                   question: Question @2)
+                    -> Question
 
     /// 删除question
     @entity("Question")
@@ -24,6 +26,6 @@ interface Quiz {
 
     /// 新增answer
     @entity("Answer")
-    @http.post("/v1/Answer")
+    @http.post("/v1/Answers")
     create_answer(answer: Answer @1) -> Answer
 }
